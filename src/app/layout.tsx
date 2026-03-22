@@ -32,6 +32,21 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     siteName: "Aura Aquatics",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 420,
+        height: 120,
+        alt: "Aura Aquatics Logo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Aura Aquatics | Houston Pool Management & Lifeguard Staffing",
+    description:
+      "Houston's premier pool management and lifeguard staffing company.",
+    images: ["/og-image.png"],
   },
 };
 
