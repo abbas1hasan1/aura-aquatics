@@ -71,7 +71,7 @@ function FlipCard({ service }: { service: (typeof services)[number] }) {
       onClick={() => setFlipped(!flipped)}
     >
       <div
-        className={`relative w-full aspect-square transition-transform duration-500 [transform-style:preserve-3d] ${
+        className={`relative w-full aspect-[4/3] sm:aspect-square transition-transform duration-500 [transform-style:preserve-3d] ${
           flipped ? "[transform:rotateY(180deg)]" : ""
         }`}
       >
@@ -130,7 +130,7 @@ export default function ServicesOverview() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
-          className="grid gap-6 grid-cols-1 sm:grid-cols-2"
+          className="grid gap-4 grid-cols-2"
         >
           {services.map((service) => (
             <motion.div key={service.id} variants={staggerItem}>
