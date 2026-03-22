@@ -71,29 +71,29 @@ function FlipCard({ service }: { service: (typeof services)[number] }) {
       onClick={() => setFlipped(!flipped)}
     >
       <div
-        className={`relative w-full aspect-[4/3] sm:aspect-square transition-transform duration-500 [transform-style:preserve-3d] ${
+        className={`relative w-full aspect-square transition-transform duration-500 [transform-style:preserve-3d] ${
           flipped ? "[transform:rotateY(180deg)]" : ""
         }`}
       >
         {/* Front */}
-        <div className="absolute inset-0 [backface-visibility:hidden] rounded-3xl bg-navy shadow-sm hover:shadow-lg transition-shadow flex flex-col items-center justify-center p-8">
-          <div className="text-white mb-6">
+        <div className="absolute inset-0 [backface-visibility:hidden] rounded-2xl sm:rounded-3xl bg-navy shadow-sm hover:shadow-lg transition-shadow flex flex-col items-center justify-center p-4 sm:p-8">
+          <div className="text-white mb-3 sm:mb-6">
             {icons[service.icon]}
           </div>
-          <h3 className="text-xl md:text-2xl font-bold text-white text-center">
+          <h3 className="text-sm sm:text-xl md:text-2xl font-bold text-white text-center leading-tight">
             {service.title}
           </h3>
-          <span className="mt-4 text-xs text-white/50 uppercase tracking-wider">
+          <span className="mt-2 sm:mt-4 text-[10px] sm:text-xs text-white/50 uppercase tracking-wider">
             Tap to learn more
           </span>
         </div>
 
         {/* Back */}
-        <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-3xl bg-navy flex flex-col items-center justify-center p-8 md:p-10">
-          <h3 className="text-xl md:text-2xl font-bold text-white text-center mb-4">
+        <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-2xl sm:rounded-3xl bg-navy flex flex-col items-center justify-center p-4 sm:p-8 md:p-10">
+          <h3 className="text-sm sm:text-xl md:text-2xl font-bold text-white text-center mb-2 sm:mb-4">
             {service.title}
           </h3>
-          <p className="text-slate-300 text-center text-sm md:text-base leading-relaxed">
+          <p className="text-slate-300 text-center text-xs sm:text-sm md:text-base leading-relaxed">
             {service.description}
           </p>
           <Link
