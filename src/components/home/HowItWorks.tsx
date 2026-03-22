@@ -67,18 +67,17 @@ export default function HowItWorks() {
           </div>
 
           {/* Mobile/Tablet: compact horizontal layout */}
-          <div className="lg:hidden">
+          <div className="lg:hidden relative">
+            {/* Single connecting line across all steps */}
+            <div className="absolute top-6 left-[12%] right-[12%] h-0.5 bg-ocean-200" />
+
             <div className="grid grid-cols-4 gap-2">
-              {processSteps.map((step, i) => (
+              {processSteps.map((step) => (
                 <motion.div
                   key={step.step}
                   variants={staggerItem}
                   className="relative flex flex-col items-center text-center"
                 >
-                  {/* Connecting line between steps */}
-                  {i < 3 && (
-                    <div className="absolute top-6 left-[55%] right-0 h-0.5 bg-ocean-200 z-0" />
-                  )}
                   <div className="relative z-10 flex h-12 w-12 flex-col items-center justify-center rounded-full bg-navy text-white shadow-md mb-3">
                     <span className="text-xs font-bold">{step.step}</span>
                   </div>

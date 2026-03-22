@@ -117,7 +117,7 @@ function FlipCard({ service }: { service: (typeof services)[number] }) {
 
 export default function ServicesOverview() {
   return (
-    <section className="py-20 md:py-28 bg-ocean-50/50">
+    <section className="py-20 md:py-28 bg-white">
       <Container>
         <SectionHeading
           label="What We Do"
