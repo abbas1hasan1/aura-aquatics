@@ -42,21 +42,20 @@ export default function HowItWorks() {
           {/* Connecting line (desktop) */}
           <div className="absolute top-16 left-[12.5%] right-[12.5%] hidden h-0.5 bg-gradient-to-r from-ocean-200 via-ocean-400 to-ocean-200 lg:block" />
 
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Desktop: 4 columns with circles + descriptions */}
+          <div className="hidden lg:grid lg:grid-cols-4 gap-8">
             {processSteps.map((step, i) => (
               <motion.div
                 key={step.step}
                 variants={staggerItem}
                 className="relative text-center"
               >
-                {/* Step number circle */}
                 <div className="relative z-10 mx-auto mb-6 flex h-32 w-32 flex-col items-center justify-center rounded-full bg-gradient-to-br from-ocean-50 to-sky-light border-4 border-white shadow-lg">
                   <div className="text-ocean-500 mb-1">{stepIcons[i]}</div>
                   <span className="text-xs font-bold uppercase tracking-wider text-ocean-400">
                     Step {step.step}
                   </span>
                 </div>
-
                 <h3 className="mb-3 text-xl font-bold text-navy">
                   {step.title}
                 </h3>
@@ -65,6 +64,30 @@ export default function HowItWorks() {
                 </p>
               </motion.div>
             ))}
+          </div>
+
+          {/* Mobile/Tablet: compact horizontal layout */}
+          <div className="lg:hidden">
+            <div className="grid grid-cols-4 gap-2">
+              {processSteps.map((step, i) => (
+                <motion.div
+                  key={step.step}
+                  variants={staggerItem}
+                  className="relative flex flex-col items-center text-center"
+                >
+                  {/* Connecting line between steps */}
+                  {i < 3 && (
+                    <div className="absolute top-6 left-[55%] right-0 h-0.5 bg-ocean-200 z-0" />
+                  )}
+                  <div className="relative z-10 flex h-12 w-12 flex-col items-center justify-center rounded-full bg-navy text-white shadow-md mb-3">
+                    <span className="text-xs font-bold">{step.step}</span>
+                  </div>
+                  <h3 className="text-xs sm:text-sm font-bold text-navy leading-tight">
+                    {step.title}
+                  </h3>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </motion.div>
       </Container>

@@ -39,8 +39,8 @@ export default function Hero() {
             className="text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl"
           >
             Houston&apos;s Premier{" "}
-            <span className="text-ocean-400">Pool Management</span> &amp;
-            Lifeguard Staffing
+            <span className="text-ocean-400">Pool Management</span>{" "}
+            &amp; Lifeguard Staffing
           </motion.h1>
 
           <motion.p

@@ -34,7 +34,9 @@ export default function Navbar() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        showSolid
+        mobileOpen
+          ? "bg-transparent shadow-none"
+          : showSolid
           ? "bg-white/95 backdrop-blur-md shadow-sm"
           : "bg-transparent"
       }`}
@@ -91,7 +93,7 @@ export default function Navbar() {
         {/* Mobile Toggle */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="relative z-50 flex flex-col gap-1.5 md:hidden"
+          className="relative z-[70] flex flex-col gap-1.5 md:hidden"
           aria-label="Toggle menu"
         >
           <span
@@ -132,7 +134,7 @@ export default function Navbar() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="fixed inset-0 z-40 bg-navy md:hidden"
+            className="fixed inset-0 z-[60] bg-navy md:hidden"
           >
             <div className="flex h-full flex-col items-center justify-center gap-6">
               {NAV_LINKS.map((link) => (
