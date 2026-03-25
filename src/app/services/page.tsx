@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import ServicesHero from "@/components/services/ServicesHero";
 import ServicesList from "@/components/services/ServicesList";
+import ReservationForm from "@/components/services/ReservationForm";
 import CTABanner from "@/components/home/CTABanner";
 
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Explore Aura Aquatics' full range of pool services: management, lifeguard staffing, maintenance, swim lessons, and pool renovations & builds in Houston, TX.",
+    "Explore Aura Aquatics' full range of pool services: pool management & staffing, maintenance & cleaning, and community reservations & private events.",
 };
 
 export default function ServicesPage() {
@@ -14,6 +15,7 @@ export default function ServicesPage() {
     <>
       <ServicesHero />
       <ServicesList />
+      <ReservationForm />
       <CTABanner />
     </>
   );
