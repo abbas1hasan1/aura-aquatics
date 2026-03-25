@@ -13,7 +13,14 @@ export const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
-  { label: "Careers", href: "/careers" },
+  {
+    label: "Careers",
+    href: "/careers",
+    children: [
+      { label: "Join Our Team", href: "/careers" },
+      { label: "Lifeguard Certification", href: "/careers/certification" },
+    ],
+  },
   { label: "Contact", href: "/contact" },
 ] as const;
 

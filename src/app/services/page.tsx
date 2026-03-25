@@ -6,7 +6,7 @@ import CTABanner from "@/components/home/CTABanner";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Explore Aura Aquatics' full range of pool management services: lifeguard staffing, pool maintenance, swim lessons, and more in Houston, TX.",
+    "Explore Aura Aquatics' full range of pool services: management, lifeguard staffing, maintenance, swim lessons, and pool renovations & builds in Houston, TX.",
 };
 
 export default function ServicesPage() {

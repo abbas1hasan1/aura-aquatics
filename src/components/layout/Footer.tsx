@@ -141,6 +141,11 @@ export default function Footer() {
                   Swim Lessons
                 </Link>
               </li>
+              <li>
+                <Link href="/services#pool-renovations" className="text-sm text-slate-400 transition-colors hover:text-white">
+                  Pool Renovations & Builds
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

@@ -58,21 +58,58 @@ export default function Navbar() {
 
         {/* Desktop Nav */}
         <div className="hidden items-center gap-8 md:flex">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`text-sm font-medium transition-colors hover:text-ocean-500 ${
-                pathname === link.href
-                  ? "text-ocean-500"
-                  : showSolid
-                  ? "text-slate-700"
-                  : "text-white/90"
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
+          {NAV_LINKS.map((link) =>
+            "children" in link && link.children ? (
+              <div key={link.href} className="relative group">
+                <Link
+                  href={link.href}
+                  className={`text-sm font-medium transition-colors hover:text-ocean-500 inline-flex items-center gap-1 ${
+                    pathname.startsWith(link.href)
+                      ? "text-ocean-500"
+                      : showSolid
+                      ? "text-slate-700"
+                      : "text-white/90"
+                  }`}
+                >
+                  {link.label}
+                  <svg className="h-3.5 w-3.5 opacity-60" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                  </svg>
+                </Link>
+                <div className="absolute left-1/2 -translate-x-1/2 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                  <div className="bg-white rounded-xl shadow-lg border border-slate-100 py-2 min-w-[200px]">
+                    {link.children.map((child) => (
+                      <Link
+                        key={child.href}
+                        href={child.href}
+                        className={`block px-4 py-2.5 text-sm transition-colors hover:bg-ocean-50 hover:text-ocean-600 ${
+                          pathname === child.href
+                            ? "text-ocean-500 bg-ocean-50/50"
+                            : "text-slate-700"
+                        }`}
+                      >
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`text-sm font-medium transition-colors hover:text-ocean-500 ${
+                  pathname === link.href
+                    ? "text-ocean-500"
+                    : showSolid
+                    ? "text-slate-700"
+                    : "text-white/90"
+                }`}
+              >
+                {link.label}
+              </Link>
+            )
+          )}
         </div>
 
         {/* Desktop CTA */}
@@ -138,17 +175,35 @@ export default function Navbar() {
           >
             <div className="flex h-full flex-col items-center justify-center gap-6">
               {NAV_LINKS.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`text-2xl font-bold transition-colors ${
-                    pathname === link.href
-                      ? "text-ocean-400"
-                      : "text-white hover:text-ocean-300"
-                  }`}
-                >
-                  {link.label}
-                </Link>
+                <div key={link.href} className="flex flex-col items-center gap-3">
+                  <Link
+                    href={link.href}
+                    className={`text-2xl font-bold transition-colors ${
+                      pathname === link.href
+                        ? "text-ocean-400"
+                        : "text-white hover:text-ocean-300"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                  {"children" in link && link.children && (
+                    <div className="flex flex-col items-center gap-2">
+                      {link.children.filter((child) => child.href !== link.href).map((child) => (
+                        <Link
+                          key={child.href}
+                          href={child.href}
+                          className={`text-base font-medium transition-colors ${
+                            pathname === child.href
+                              ? "text-ocean-400"
+                              : "text-slate-400 hover:text-ocean-300"
+                          }`}
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
               ))}
 
               <div className="mt-8 flex flex-col items-center gap-4 border-t border-white/10 pt-8">

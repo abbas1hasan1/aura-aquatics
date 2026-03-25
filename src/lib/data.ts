@@ -59,6 +59,21 @@ export const services = [
       "Safe & fun environment",
     ],
   },
+  {
+    id: "pool-renovations",
+    title: "Pool Renovations & Builds",
+    description:
+      "From full renovations to new construction, we handle every aspect of pool building and remodeling. Plaster, tile, concrete, equipment — we bring your vision to life.",
+    icon: "renovation",
+    features: [
+      "Full pool renovation",
+      "Plaster & resurfacing",
+      "Equipment installation",
+      "Concrete & tile work",
+      "New pool construction",
+      "Custom design consultation",
+    ],
+  },
 ] as const;
 
 export const positions = [
@@ -148,13 +163,31 @@ export const testimonials = [
     name: "James R.",
     role: "Country Club Manager",
   },
-] as const;
-
-export const stats = [
-  { label: "Pools Managed", value: 50, suffix: "+" },
-  { label: "Lifeguards Placed", value: 200, suffix: "+" },
-  { label: "Years Experience", value: 10, suffix: "+" },
-  { label: "Communities Served", value: 30, suffix: "+" },
+  // Placeholder — client to provide real testimonials
+  {
+    quote:
+      "We've been using Aura Aquatics for our neighborhood pool for two seasons now. The water is always crystal clear, the lifeguards are attentive, and the communication from their team is top-notch. Best decision our HOA ever made.",
+    name: "Linda T.",
+    role: "HOA Board Member",
+  },
+  {
+    quote:
+      "My kids took swim lessons through Aura Aquatics and the instructors were amazing — patient, encouraging, and really skilled. Both of my children went from being afraid of the water to swimming laps. Can't recommend them enough!",
+    name: "David K.",
+    role: "Swim Lesson Parent",
+  },
+  {
+    quote:
+      "We hosted our daughter's birthday party at our community pool and the Aura Aquatics team made it so easy. They handled all the safety supervision so we could actually enjoy the party. The kids had a blast!",
+    name: "Maria G.",
+    role: "Pool Party Host",
+  },
+  {
+    quote:
+      "Working as a lifeguard with Aura Aquatics was one of the best experiences of my college years. The training was thorough, the management was supportive, and I made friends I still keep in touch with today.",
+    name: "Tyler W.",
+    role: "Former Lifeguard",
+  },
 ] as const;
 
 export const processSteps = [
@@ -243,3 +276,39 @@ export const benefits = [
     description: "We help cover certification costs and connect you with training programs to get started fast.",
   },
 ] as const;
+
+export const certificationCourse = {
+  title: "Lifeguarding and Bloodborne Pathogens Training-BL",
+  description:
+    "The Lifeguarding course provides participants the knowledge and skills to prevent, recognize, and respond to aquatic emergencies in both shallow water (less than 7 feet) and deeper water (7 feet or more) and to provide professional-level care for breathing and cardiac emergencies, injuries, and sudden illnesses until EMS personnel take over. Participants who successfully complete this course receive an American Red Cross certificate for Lifeguarding (including deep water) with CPR/AED for Professional Rescuers and First Aid valid for 2 years and Bloodborne Pathogens valid for 1 year. This class is taught in a blended learning format and the assigned online portion(s) (accessed via mobile, desktop, or tablet) must be completed prior to each instructor-led session.",
+  prerequisites: [
+    "Minimum age: 15 years",
+    "Complete a swim-tread-swim sequence: Jump into the water, submerge, resurface, swim 150 yards using the front crawl, breaststroke, or a combination of both; maintain position at the surface of the water for 2 minutes by treading water using only the legs; then swim 50 yards using the front crawl, breaststroke, or a combination of both.",
+    "Complete a timed event within 1 minute 40 seconds: Starting in the water, swim 20 yards, surface dive (feet-first or head-first) to a depth of 7 to 12 feet to retrieve a 10-pound object, return to the surface, and swim 20 yards on the back to return to the starting point holding the object at the surface with both hands; exit the water without using a ladder or steps.",
+  ],
+  beforeFirstDay: [
+    "Complete all assigned online coursework before your first in-person session",
+    "Bring a valid photo ID",
+    "Bring swimwear and a towel",
+    "Be prepared to demonstrate swimming skills during the prerequisite assessment",
+  ],
+  onFirstDay: [
+    "Arrive 15 minutes early for check-in and orientation",
+    "Prerequisite swim assessment will be conducted first",
+    "Bring water and snacks — sessions run most of the day",
+    "Wear comfortable clothing you can move in for land-based skills",
+  ],
+  // Placeholder dates — update when actual course dates are confirmed
+  dates: [
+    { label: "April 18–19, 2026", status: "upcoming" as const },
+    { label: "April 25–26, 2026", status: "upcoming" as const },
+    { label: "May 2–3, 2026", status: "upcoming" as const },
+    { label: "May 9–10, 2026", status: "upcoming" as const },
+  ],
+  certifications: [
+    "American Red Cross Lifeguarding (including deep water)",
+    "CPR/AED for Professional Rescuers",
+    "First Aid (valid for 2 years)",
+    "Bloodborne Pathogens (valid for 1 year)",
+  ],
+} as const;

@@ -2,7 +2,7 @@
 
 @theme inline {
   /* Blue Ribbon palette from Kigen.design */
-  --color-ocean-50: #e3e5e8;
+  --color-ocean-50: #c8d9f0;
   --color-ocean-100: #a2b5d0;
   --color-ocean-200: #7a9bc0;
   --color-ocean-300: #4d81cb;
@@ -17,7 +17,7 @@
   --color-navy-light: #0a3570;
   --color-navy-800: #001f4d;
 
-  --color-sky-light: #e3e5e8;
+  --color-sky-light: #c8d9f0;
   --color-aura-gray: #F8FAFC;
   --color-aura-gray-100: #F1F5F9;
 

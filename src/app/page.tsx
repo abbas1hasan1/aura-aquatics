@@ -4,7 +4,6 @@ import WhyChooseUs from "@/components/home/WhyChooseUs";
 import HowItWorks from "@/components/home/HowItWorks";
 import FunIcons from "@/components/home/FunIcons";
 import Testimonials from "@/components/home/Testimonials";
-import Stats from "@/components/home/Stats";
 import CTABanner from "@/components/home/CTABanner";
 
 export default function Home() {
@@ -15,7 +14,6 @@ export default function Home() {
       <WhyChooseUs />
       <HowItWorks />
       <FunIcons />
-      <Stats />
       <Testimonials />
       <CTABanner />
     </>

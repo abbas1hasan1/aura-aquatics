@@ -60,6 +60,21 @@ const icons: Record<string, React.ReactNode> = {
       <path d="M8 56C12 54 16 54 20 56C24 58 28 58 32 56C36 54 40 54 44 56C48 58 52 58 56 56" strokeWidth={2} opacity={0.2} />
     </svg>
   ),
+  renovation: (
+    <svg className="h-16 w-16 md:h-20 md:w-20" fill="none" viewBox="0 0 64 64" strokeWidth={1.5} stroke="currentColor">
+      <rect x="8" y="32" width="48" height="20" rx="4" />
+      <path d="M8 44C14 40 20 40 26 44C32 48 38 48 44 44C50 40 56 40 56 44" strokeWidth={1.5} opacity={0.3} />
+      <path d="M16 32V26" strokeWidth={2} />
+      <path d="M48 32V26" strokeWidth={2} />
+      <path d="M12 26H52" strokeWidth={2} />
+      <path d="M32 26V16" strokeWidth={2} />
+      <path d="M26 16H38" strokeWidth={2} />
+      <path d="M22 8L32 16L42 8" strokeWidth={2} />
+      <circle cx="32" cy="42" r="4" strokeWidth={1.2} opacity={0.4} />
+      <path d="M20 38V48" strokeWidth={1} opacity={0.15} />
+      <path d="M44 38V48" strokeWidth={1} opacity={0.15} />
+    </svg>
+  ),
 };
 
 function FlipCard({ service }: { service: (typeof services)[number] }) {
@@ -132,8 +147,12 @@ export default function ServicesOverview() {
           viewport={{ once: true, amount: 0.1 }}
           className="grid gap-4 grid-cols-2"
         >
-          {services.map((service) => (
-            <motion.div key={service.id} variants={staggerItem}>
+          {services.map((service, index) => (
+            <motion.div
+              key={service.id}
+              variants={staggerItem}
+              className={index === services.length - 1 && services.length % 2 !== 0 ? "col-span-2 mx-auto max-w-[50%]" : ""}
+            >
               <FlipCard service={service} />
             </motion.div>
           ))}

@@ -53,31 +53,13 @@ export default function Story() {
             viewport={{ once: true, amount: 0.3 }}
             className="relative"
           >
-            <div className="aspect-[4/3] overflow-hidden rounded-3xl relative mb-6">
+            <div className="aspect-[4/3] overflow-hidden rounded-3xl relative">
               <Image
-                src="/images/pool-community.jpg"
+                src="/images/pool-aerial.jpg"
                 alt="Community pool managed by Aura Aquatics"
                 fill
                 className="object-cover"
               />
-            </div>
-            <div className="grid grid-cols-4 gap-4">
-              <div className="rounded-2xl bg-gradient-to-br from-ocean-400 to-ocean-600 p-4 text-white text-center">
-                <div className="text-2xl font-bold">50+</div>
-                <div className="text-xs text-ocean-100 mt-1">Pools</div>
-              </div>
-              <div className="rounded-2xl bg-aura-gray p-4 text-center">
-                <div className="text-2xl font-bold text-navy">200+</div>
-                <div className="text-xs text-slate-500 mt-1">Lifeguards</div>
-              </div>
-              <div className="rounded-2xl bg-aura-gray p-4 text-center">
-                <div className="text-2xl font-bold text-navy">30+</div>
-                <div className="text-xs text-slate-500 mt-1">Communities</div>
-              </div>
-              <div className="rounded-2xl bg-gradient-to-br from-navy to-navy-light p-4 text-white text-center">
-                <div className="text-2xl font-bold">10+</div>
-                <div className="text-xs text-slate-400 mt-1">Years</div>
-              </div>
             </div>
           </motion.div>
         </div>
