@@ -9,10 +9,8 @@ import { services } from "@/lib/data";
 
 const serviceImages: Record<string, string> = {
   "pool-management": "/images/service-pool-management.jpg",
-  "lifeguard-staffing": "/images/service-lifeguard.jpg",
   "pool-maintenance": "/images/service-maintenance.jpg",
-  "swim-lessons": "/images/service-swim-lessons.jpg",
-  "pool-renovations": "/images/pool-water-blue.jpg",
+  "private-events": "/images/service-swim-lessons.jpg",
 };
 
 export default function ServicesList() {

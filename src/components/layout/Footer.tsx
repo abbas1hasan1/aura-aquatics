@@ -133,27 +133,17 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <Link href="/services#pool-management" className="text-sm text-slate-400 transition-colors hover:text-white">
-                  Pool Management
-                </Link>
-              </li>
-              <li>
-                <Link href="/services#lifeguard-staffing" className="text-sm text-slate-400 transition-colors hover:text-white">
-                  Lifeguard Staffing
+                  Pool Management & Staffing
                 </Link>
               </li>
               <li>
                 <Link href="/services#pool-maintenance" className="text-sm text-slate-400 transition-colors hover:text-white">
-                  Pool Maintenance
+                  Pool Maintenance & Cleaning
                 </Link>
               </li>
               <li>
-                <Link href="/services#swim-lessons" className="text-sm text-slate-400 transition-colors hover:text-white">
-                  Swim Lessons
-                </Link>
-              </li>
-              <li>
-                <Link href="/services#pool-renovations" className="text-sm text-slate-400 transition-colors hover:text-white">
-                  Pool Renovations & Builds
+                <Link href="/services#private-events" className="text-sm text-slate-400 transition-colors hover:text-white">
+                  Reservations & Private Events
                 </Link>
               </li>
             </ul>

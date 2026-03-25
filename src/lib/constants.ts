@@ -12,7 +12,15 @@ export const COMPANY = {
 export const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
-  { label: "Services", href: "/services" },
+  {
+    label: "Services",
+    href: "/services",
+    children: [
+      { label: "Pool Management & Staffing", href: "/services#pool-management" },
+      { label: "Pool Maintenance & Cleaning", href: "/services#pool-maintenance" },
+      { label: "Reservations & Private Events", href: "/services#private-events" },
+    ],
+  },
   {
     label: "Careers",
     href: "/careers",

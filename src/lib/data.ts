@@ -1,31 +1,16 @@
 export const services = [
   {
     id: "pool-management",
-    title: "Pool Management",
+    title: "Pool Management & Staffing",
     description:
-      "Full-service pool management for HOAs, private clubs, and residential communities. We handle every aspect so all you have to do is swim.",
+      "Full-service pool management and certified lifeguard staffing for HOAs, private clubs, and residential communities. We handle every aspect — from facility oversight to trained staff — so all you have to do is swim.",
     icon: "management",
     features: [
       "Comprehensive facility oversight",
+      "Certified & insured lifeguards",
       "Staff scheduling & supervision",
       "Safety compliance & inspections",
       "Chemical monitoring & water quality",
-      "Equipment maintenance & repairs",
-      "Incident reporting & documentation",
-    ],
-  },
-  {
-    id: "lifeguard-staffing",
-    title: "Lifeguard Staffing",
-    description:
-      "Trained, certified lifeguards available for seasonal and year-round staffing. Our team is professional, reliable, and ready to keep your facility safe.",
-    icon: "lifeguard",
-    features: [
-      "Certified & insured lifeguards",
-      "Seasonal & year-round availability",
-      "Background-checked staff",
-      "Ongoing training & development",
-      "Flexible scheduling options",
       "Emergency response trained",
     ],
   },
@@ -45,17 +30,17 @@ export const services = [
     ],
   },
   {
-    id: "swim-lessons",
-    title: "Swim Lessons & Pool Parties",
+    id: "private-events",
+    title: "Community Reservations & Private Events",
     description:
-      "Professional swim instruction for all ages and skill levels. Plus, host unforgettable pool parties with our certified lifeguard supervision.",
-    icon: "swimming",
+      "Host unforgettable pool parties and private events with certified lifeguard supervision. We handle the safety so you can focus on having fun.",
+    icon: "events",
     features: [
-      "All ages & skill levels welcome",
-      "Certified swim instructors",
-      "Private & group lessons available",
-      "Birthday party packages",
+      "Private party packages",
+      "Community pool reservations",
+      "Exclusive & non-exclusive hour options",
       "Certified lifeguard supervision",
+      "Event coordination support",
       "Safe & fun environment",
     ],
   },
