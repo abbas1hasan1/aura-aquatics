@@ -59,21 +59,6 @@ export const services = [
       "Safe & fun environment",
     ],
   },
-  {
-    id: "pool-renovations",
-    title: "Pool Renovations & Builds",
-    description:
-      "From full renovations to new construction, we handle every aspect of pool building and remodeling. Plaster, tile, concrete, equipment — we bring your vision to life.",
-    icon: "renovation",
-    features: [
-      "Full pool renovation",
-      "Plaster & resurfacing",
-      "Equipment installation",
-      "Concrete & tile work",
-      "New pool construction",
-      "Custom design consultation",
-    ],
-  },
 ] as const;
 
 export const positions = [
