@@ -38,7 +38,7 @@ export default function Hero() {
             variants={fadeInUp}
             className="text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl"
           >
-            Houston&apos;s Premier{" "}
+            Premier{" "}
             <span className="text-ocean-400">Pool Management</span>{" "}
             &amp; Lifeguard Staffing
           </motion.h1>
@@ -86,6 +86,13 @@ export default function Hero() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
               </svg>
               <span className="text-sm text-white/80">Houston, TX</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <svg className="h-5 w-5 text-ocean-400" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+              </svg>
+              <span className="text-sm text-white/80">Dallas, TX</span>
             </div>
           </motion.div>
         </motion.div>
