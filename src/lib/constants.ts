@@ -24,6 +24,10 @@ export const NAV_LINKS = [
   { label: "Contact", href: "/contact" },
 ] as const;
 
+export const EMPLOYEE_LINKS = {
+  whenToWork: "https://www.whentowork.com/logins.htm",
+} as const;
+
 export const SOCIAL_LINKS = {
   linkedin: "https://www.linkedin.com/company/aura-aquatics",
   instagram: "https://www.instagram.com/auraaquatics/",

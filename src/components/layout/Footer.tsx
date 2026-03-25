@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { COMPANY, NAV_LINKS, SOCIAL_LINKS } from "@/lib/constants";
+import { COMPANY, NAV_LINKS, SOCIAL_LINKS, EMPLOYEE_LINKS } from "@/lib/constants";
 
 export default function Footer() {
   return (
@@ -49,6 +49,16 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <a
+                  href={EMPLOYEE_LINKS.whenToWork}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-slate-400 transition-colors hover:text-white"
+                >
+                  Employee Schedules
+                </a>
+              </li>
             </ul>
           </div>
 

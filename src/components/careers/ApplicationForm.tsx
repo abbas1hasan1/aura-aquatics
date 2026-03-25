@@ -20,9 +20,9 @@ export default function ApplicationForm() {
     <section id="apply" className="py-20 md:py-28 scroll-mt-24">
       <Container>
         <SectionHeading
-          label="Apply Today"
-          title="Start Your Application"
-          subtitle={`Fill out the form below and we'll be in touch. Not yet certified? No problem — we'll help you get there.`}
+          label="Interested?"
+          title="Let Us Know"
+          subtitle={`Tell us a bit about yourself and we'll reach out. Not yet certified? No problem — we'll help you get there.`}
         />
 
         <motion.div
@@ -41,7 +41,7 @@ export default function ApplicationForm() {
               </div>
               <h3 className="text-2xl font-bold text-navy">Thank You!</h3>
               <p className="mt-2 text-slate-600">
-                Your application has been received. We&apos;ll be in touch soon!
+                Your submission has been received. We&apos;ll be reaching out shortly!
               </p>
               <p className="mt-4 text-sm text-slate-500">
                 Questions? Call us at{" "}
@@ -153,14 +153,26 @@ export default function ApplicationForm() {
                 />
               </div>
 
+              <div className="mt-6">
+                <label htmlFor="availability" className="mb-2 block text-sm font-medium text-navy">
+                  What&apos;s a great time to talk?
+                </label>
+                <input
+                  type="text"
+                  id="availability"
+                  className="w-full rounded-xl border border-slate-200 px-4 py-3 text-navy transition-colors focus:border-ocean-500 focus:outline-none focus:ring-2 focus:ring-ocean-500/20"
+                  placeholder="e.g., Weekdays after 3pm, anytime 12–4..."
+                />
+              </div>
+
               <div className="mt-8">
                 <Button type="submit" size="lg" className="w-full">
-                  Submit Application
+                  Submit Inquiry
                 </Button>
               </div>
 
               <p className="mt-4 text-center text-xs text-slate-500">
-                By submitting this form, you agree to be contacted by Aura Aquatics regarding employment opportunities.
+                By submitting, you agree to be contacted by Aura Aquatics regarding employment opportunities.
               </p>
             </form>
           )}

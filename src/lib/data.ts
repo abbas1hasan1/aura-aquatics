@@ -285,10 +285,10 @@ export const certificationCourse = {
   ],
   // Placeholder dates — update when actual course dates are confirmed
   dates: [
-    { label: "April 18–19, 2026", status: "upcoming" as const },
-    { label: "April 25–26, 2026", status: "upcoming" as const },
-    { label: "May 2–3, 2026", status: "upcoming" as const },
-    { label: "May 9–10, 2026", status: "upcoming" as const },
+    { label: "April 18–19, 2026", status: "upcoming" as const, price: "$250" },
+    { label: "April 25–26, 2026", status: "upcoming" as const, price: "$250" },
+    { label: "May 2–3, 2026", status: "upcoming" as const, price: "$250" },
+    { label: "May 9–10, 2026", status: "upcoming" as const, price: "$250" },
   ],
   certifications: [
     "American Red Cross Lifeguarding (including deep water)",
