@@ -132,13 +132,12 @@ export default function ServicesOverview() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
-          className="grid gap-4 grid-cols-2 lg:grid-cols-3"
+          className="grid gap-4 grid-cols-1 sm:grid-cols-3"
         >
           {services.map((service) => (
             <motion.div
               key={service.id}
               variants={staggerItem}
-              className={services.length === 3 ? "last:col-span-2 last:mx-auto last:max-w-[50%] lg:last:col-span-1 lg:last:max-w-full" : ""}
             >
               <FlipCard service={service} />
             </motion.div>
