@@ -55,9 +55,9 @@ export default function ReservationForm() {
               onSubmit={handleSubmit}
               className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm md:p-10"
             >
-              <div className="mt-0">
+              <div>
                 <label htmlFor="res-community" className="mb-2 block text-sm font-medium text-navy">
-                  Community / Neighborhood Name *
+                  Community Name *
                 </label>
                 <input
                   type="text"
@@ -98,11 +98,12 @@ export default function ReservationForm() {
               <div className="mt-6 grid gap-6 sm:grid-cols-2">
                 <div>
                   <label htmlFor="res-email" className="mb-2 block text-sm font-medium text-navy">
-                    Email
+                    Email *
                   </label>
                   <input
                     type="email"
                     id="res-email"
+                    required
                     className="w-full rounded-xl border border-slate-200 px-4 py-3 text-navy transition-colors focus:border-ocean-500 focus:outline-none focus:ring-2 focus:ring-ocean-500/20"
                     placeholder="your@email.com"
                   />
@@ -121,45 +122,93 @@ export default function ReservationForm() {
                 </div>
               </div>
 
-              <div className="mt-6 grid gap-6 sm:grid-cols-2">
-                <div>
-                  <label htmlFor="res-eventType" className="mb-2 block text-sm font-medium text-navy">
-                    Event Type *
-                  </label>
-                  <select
-                    id="res-eventType"
-                    required
-                    className="w-full rounded-xl border border-slate-200 px-4 py-3 text-navy transition-colors focus:border-ocean-500 focus:outline-none focus:ring-2 focus:ring-ocean-500/20"
-                  >
-                    <option value="">Select event type</option>
-                    <option value="private-party">Private Party</option>
-                    <option value="community-reservation">Community Reservation</option>
-                    <option value="birthday-party">Birthday Party</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
+              <div className="mt-6">
+                <label htmlFor="res-eventName" className="mb-2 block text-sm font-medium text-navy">
+                  Event Name *
+                </label>
+                <input
+                  type="text"
+                  id="res-eventName"
+                  required
+                  className="w-full rounded-xl border border-slate-200 px-4 py-3 text-navy transition-colors focus:border-ocean-500 focus:outline-none focus:ring-2 focus:ring-ocean-500/20"
+                  placeholder="e.g., Summer Birthday Party"
+                />
+              </div>
+
+              <div className="mt-6 grid gap-6 sm:grid-cols-3">
                 <div>
                   <label htmlFor="res-date" className="mb-2 block text-sm font-medium text-navy">
-                    Preferred Date
+                    Requested Date *
                   </label>
                   <input
                     type="date"
                     id="res-date"
+                    required
+                    className="w-full rounded-xl border border-slate-200 px-4 py-3 text-navy transition-colors focus:border-ocean-500 focus:outline-none focus:ring-2 focus:ring-ocean-500/20"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="res-startTime" className="mb-2 block text-sm font-medium text-navy">
+                    Start Time *
+                  </label>
+                  <input
+                    type="time"
+                    id="res-startTime"
+                    required
+                    className="w-full rounded-xl border border-slate-200 px-4 py-3 text-navy transition-colors focus:border-ocean-500 focus:outline-none focus:ring-2 focus:ring-ocean-500/20"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="res-endTime" className="mb-2 block text-sm font-medium text-navy">
+                    End Time *
+                  </label>
+                  <input
+                    type="time"
+                    id="res-endTime"
+                    required
                     className="w-full rounded-xl border border-slate-200 px-4 py-3 text-navy transition-colors focus:border-ocean-500 focus:outline-none focus:ring-2 focus:ring-ocean-500/20"
                   />
                 </div>
               </div>
 
-              <div className="mt-6">
-                <label htmlFor="res-details" className="mb-2 block text-sm font-medium text-navy">
-                  Additional Details
-                </label>
-                <textarea
-                  id="res-details"
-                  rows={4}
-                  className="w-full rounded-xl border border-slate-200 px-4 py-3 text-navy transition-colors focus:border-ocean-500 focus:outline-none focus:ring-2 focus:ring-ocean-500/20 resize-none"
-                  placeholder="Number of guests, time preferences, special requests..."
-                />
+              <div className="mt-6 grid gap-6 sm:grid-cols-3">
+                <div>
+                  <label htmlFor="res-partySize" className="mb-2 block text-sm font-medium text-navy">
+                    Party Size *
+                  </label>
+                  <input
+                    type="number"
+                    id="res-partySize"
+                    required
+                    min="1"
+                    className="w-full rounded-xl border border-slate-200 px-4 py-3 text-navy transition-colors focus:border-ocean-500 focus:outline-none focus:ring-2 focus:ring-ocean-500/20"
+                    placeholder="Total guests"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="res-kids" className="mb-2 block text-sm font-medium text-navy">
+                    # of Kids
+                  </label>
+                  <input
+                    type="number"
+                    id="res-kids"
+                    min="0"
+                    className="w-full rounded-xl border border-slate-200 px-4 py-3 text-navy transition-colors focus:border-ocean-500 focus:outline-none focus:ring-2 focus:ring-ocean-500/20"
+                    placeholder="0"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="res-adults" className="mb-2 block text-sm font-medium text-navy">
+                    # of Adults
+                  </label>
+                  <input
+                    type="number"
+                    id="res-adults"
+                    min="0"
+                    className="w-full rounded-xl border border-slate-200 px-4 py-3 text-navy transition-colors focus:border-ocean-500 focus:outline-none focus:ring-2 focus:ring-ocean-500/20"
+                    placeholder="0"
+                  />
+                </div>
               </div>
 
               <div className="mt-8">

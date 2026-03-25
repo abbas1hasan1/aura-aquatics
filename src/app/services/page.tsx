@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import ServicesHero from "@/components/services/ServicesHero";
 import ServicesList from "@/components/services/ServicesList";
-import ReservationForm from "@/components/services/ReservationForm";
 import CTABanner from "@/components/home/CTABanner";
 
 export const metadata: Metadata = {
@@ -15,7 +14,6 @@ export default function ServicesPage() {
     <>
       <ServicesHero />
       <ServicesList />
-      <ReservationForm />
       <CTABanner />
     </>
   );

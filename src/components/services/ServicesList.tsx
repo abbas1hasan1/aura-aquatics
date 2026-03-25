@@ -91,7 +91,7 @@ export default function ServicesList() {
                     </ul>
 
                     <div className="mt-8">
-                      <Button href={service.id === "private-events" ? "#reservation" : "/contact"}>
+                      <Button href={service.id === "private-events" ? "/services/reservation" : "/contact"}>
                         {service.id === "private-events" ? "Reserve Now" : "Get a Quote"}
                       </Button>
                     </div>
