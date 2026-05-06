@@ -51,19 +51,32 @@ export default function ReservationForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const endpoint = process.env.NEXT_PUBLIC_RESERVATION_ENDPOINT;
-    if (!endpoint) {
-      setError("Form is not configured yet. Please call us instead.");
-      return;
-    }
-
     setSubmitting(true);
     setError(null);
     try {
-      const res = await fetch(endpoint, {
+      const res = await fetch("https://formsubmit.co/ajax/Info@auraaquatics.com", {
         method: "POST",
-        headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: JSON.stringify(formData),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          _subject: `New reservation request — ${formData.eventName || "Event"} (${formData.community || "Community"})`,
+          _replyto: formData.email,
+          _template: "table",
+          "Community": formData.community,
+          "First Name": formData.firstName,
+          "Last Name": formData.lastName,
+          "Email": formData.email,
+          "Phone": formData.phone,
+          "Event Name": formData.eventName,
+          "Date": formData.date,
+          "Start Time": formData.startTime,
+          "End Time": formData.endTime,
+          "Party Size": formData.partySize,
+          "Kids": formData.kids,
+          "Adults": formData.adults,
+        }),
       });
       if (!res.ok) throw new Error("Request failed");
       setSubmitted(true);
