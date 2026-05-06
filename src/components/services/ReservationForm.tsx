@@ -8,12 +8,70 @@ import Button from "@/components/ui/Button";
 import { fadeInUp } from "@/lib/animations";
 import { COMPANY } from "@/lib/constants";
 
-export default function ReservationForm() {
-  const [submitted, setSubmitted] = useState(false);
+type FormData = {
+  community: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  eventName: string;
+  date: string;
+  startTime: string;
+  endTime: string;
+  partySize: string;
+  kids: string;
+  adults: string;
+};
 
-  const handleSubmit = (e: React.FormEvent) => {
+const EMPTY_FORM: FormData = {
+  community: "",
+  firstName: "",
+  lastName: "",
+  email: "",
+  phone: "",
+  eventName: "",
+  date: "",
+  startTime: "",
+  endTime: "",
+  partySize: "",
+  kids: "",
+  adults: "",
+};
+
+export default function ReservationForm() {
+  const [formData, setFormData] = useState<FormData>(EMPTY_FORM);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    const endpoint = process.env.NEXT_PUBLIC_RESERVATION_ENDPOINT;
+    if (!endpoint) {
+      setError("Form is not configured yet. Please call us instead.");
+      return;
+    }
+
+    setSubmitting(true);
+    setError(null);
+    try {
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(formData),
+      });
+      if (!res.ok) throw new Error("Request failed");
+      setSubmitted(true);
+    } catch {
+      setError("Something went wrong. Please try again or call us.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -62,6 +120,9 @@ export default function ReservationForm() {
                 <input
                   type="text"
                   id="res-community"
+                  name="community"
+                  value={formData.community}
+                  onChange={handleChange}
                   required
                   className="w-full rounded-xl border border-slate-200 px-4 py-3 text-navy transition-colors focus:border-ocean-500 focus:outline-none focus:ring-2 focus:ring-ocean-500/20"
                   placeholder="e.g., Riverstone HOA"
@@ -76,6 +137,9 @@ export default function ReservationForm() {
                   <input
                     type="text"
                     id="res-firstName"
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleChange}
                     required
                     className="w-full rounded-xl border border-slate-200 px-4 py-3 text-navy transition-colors focus:border-ocean-500 focus:outline-none focus:ring-2 focus:ring-ocean-500/20"
                     placeholder="First name"
@@ -88,6 +152,9 @@ export default function ReservationForm() {
                   <input
                     type="text"
                     id="res-lastName"
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleChange}
                     required
                     className="w-full rounded-xl border border-slate-200 px-4 py-3 text-navy transition-colors focus:border-ocean-500 focus:outline-none focus:ring-2 focus:ring-ocean-500/20"
                     placeholder="Last name"
@@ -103,6 +170,9 @@ export default function ReservationForm() {
                   <input
                     type="email"
                     id="res-email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
                     required
                     className="w-full rounded-xl border border-slate-200 px-4 py-3 text-navy transition-colors focus:border-ocean-500 focus:outline-none focus:ring-2 focus:ring-ocean-500/20"
                     placeholder="your@email.com"
@@ -115,6 +185,9 @@ export default function ReservationForm() {
                   <input
                     type="tel"
                     id="res-phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
                     required
                     className="w-full rounded-xl border border-slate-200 px-4 py-3 text-navy transition-colors focus:border-ocean-500 focus:outline-none focus:ring-2 focus:ring-ocean-500/20"
                     placeholder="(281) 555-0123"
@@ -129,6 +202,9 @@ export default function ReservationForm() {
                 <input
                   type="text"
                   id="res-eventName"
+                  name="eventName"
+                  value={formData.eventName}
+                  onChange={handleChange}
                   required
                   className="w-full rounded-xl border border-slate-200 px-4 py-3 text-navy transition-colors focus:border-ocean-500 focus:outline-none focus:ring-2 focus:ring-ocean-500/20"
                   placeholder="e.g., Summer Birthday Party"
@@ -143,6 +219,9 @@ export default function ReservationForm() {
                   <input
                     type="date"
                     id="res-date"
+                    name="date"
+                    value={formData.date}
+                    onChange={handleChange}
                     required
                     className="w-full rounded-xl border border-slate-200 px-4 py-3 text-navy transition-colors focus:border-ocean-500 focus:outline-none focus:ring-2 focus:ring-ocean-500/20"
                   />
@@ -154,6 +233,9 @@ export default function ReservationForm() {
                   <input
                     type="time"
                     id="res-startTime"
+                    name="startTime"
+                    value={formData.startTime}
+                    onChange={handleChange}
                     required
                     className="w-full rounded-xl border border-slate-200 px-4 py-3 text-navy transition-colors focus:border-ocean-500 focus:outline-none focus:ring-2 focus:ring-ocean-500/20"
                   />
@@ -165,6 +247,9 @@ export default function ReservationForm() {
                   <input
                     type="time"
                     id="res-endTime"
+                    name="endTime"
+                    value={formData.endTime}
+                    onChange={handleChange}
                     required
                     className="w-full rounded-xl border border-slate-200 px-4 py-3 text-navy transition-colors focus:border-ocean-500 focus:outline-none focus:ring-2 focus:ring-ocean-500/20"
                   />
@@ -179,6 +264,9 @@ export default function ReservationForm() {
                   <input
                     type="number"
                     id="res-partySize"
+                    name="partySize"
+                    value={formData.partySize}
+                    onChange={handleChange}
                     required
                     min="1"
                     className="w-full rounded-xl border border-slate-200 px-4 py-3 text-navy transition-colors focus:border-ocean-500 focus:outline-none focus:ring-2 focus:ring-ocean-500/20"
@@ -192,6 +280,9 @@ export default function ReservationForm() {
                   <input
                     type="number"
                     id="res-kids"
+                    name="kids"
+                    value={formData.kids}
+                    onChange={handleChange}
                     min="0"
                     className="w-full rounded-xl border border-slate-200 px-4 py-3 text-navy transition-colors focus:border-ocean-500 focus:outline-none focus:ring-2 focus:ring-ocean-500/20"
                     placeholder="0"
@@ -204,6 +295,9 @@ export default function ReservationForm() {
                   <input
                     type="number"
                     id="res-adults"
+                    name="adults"
+                    value={formData.adults}
+                    onChange={handleChange}
                     min="0"
                     className="w-full rounded-xl border border-slate-200 px-4 py-3 text-navy transition-colors focus:border-ocean-500 focus:outline-none focus:ring-2 focus:ring-ocean-500/20"
                     placeholder="0"
@@ -211,9 +305,15 @@ export default function ReservationForm() {
                 </div>
               </div>
 
+              {error && (
+                <div className="mt-6 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+                  {error}
+                </div>
+              )}
+
               <div className="mt-8">
-                <Button type="submit" size="lg" className="w-full">
-                  Submit Reservation Request
+                <Button type="submit" size="lg" className="w-full" disabled={submitting}>
+                  {submitting ? "Submitting…" : "Submit Reservation Request"}
                 </Button>
               </div>
 

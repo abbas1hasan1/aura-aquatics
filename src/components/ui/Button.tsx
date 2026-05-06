@@ -8,6 +8,7 @@ interface ButtonProps {
   size?: "sm" | "md" | "lg";
   className?: string;
   type?: "button" | "submit";
+  disabled?: boolean;
 }
 
 const variants = {
@@ -33,8 +34,13 @@ export default function Button({
   size = "md",
   className = "",
   type = "button",
+  disabled = false,
 }: ButtonProps) {
-  const classes = `inline-flex items-center justify-center font-semibold rounded-full transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] ${variants[variant]} ${sizes[size]} ${className}`;
+  const baseClasses = `inline-flex items-center justify-center font-semibold rounded-full transition-all duration-300 ${variants[variant]} ${sizes[size]} ${className}`;
+  const interactiveClasses = disabled
+    ? "opacity-60 cursor-not-allowed"
+    : "hover:scale-[1.02] active:scale-[0.98]";
+  const classes = `${baseClasses} ${interactiveClasses}`;
 
   if (href) {
     return (
@@ -45,7 +51,7 @@ export default function Button({
   }
 
   return (
-    <button type={type} onClick={onClick} className={classes}>
+    <button type={type} onClick={onClick} className={classes} disabled={disabled}>
       {children}
     </button>
   );
