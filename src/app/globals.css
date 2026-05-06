@@ -140,6 +140,113 @@ body {
   }
 }
 
+/* ===== How It Works step icons ===== */
+
+/* Step 1: typing dots */
+.step-icon-consult .dot {
+  animation: typingDot 1.4s ease-in-out infinite;
+}
+.step-icon-consult .dot-1 { animation-delay: 0s; }
+.step-icon-consult .dot-2 { animation-delay: 0.2s; }
+.step-icon-consult .dot-3 { animation-delay: 0.4s; }
+
+@keyframes typingDot {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.3; }
+  30% { transform: translateY(-2px); opacity: 1; }
+}
+
+/* Step 2: pin bob + radar pulse rings */
+.step-icon-visit .pin {
+  animation: pinBob 2.4s ease-in-out infinite;
+  transform-origin: 18px 28px;
+}
+.step-icon-visit .ring {
+  transform-origin: 18px 30px;
+  animation: ringPulse 2.4s ease-out infinite;
+}
+.step-icon-visit .ring-1 { animation-delay: 0s; }
+.step-icon-visit .ring-2 { animation-delay: 0.8s; }
+.step-icon-visit .ring-3 { animation-delay: 1.6s; }
+
+@keyframes pinBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+@keyframes ringPulse {
+  0% { transform: scale(0.4); opacity: 0.7; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* Step 3: whistle blow + sound waves */
+.step-icon-whistle .whistle {
+  animation: whistleBlow 2s ease-in-out infinite;
+  transform-origin: 22px 16px;
+}
+.step-icon-whistle .wave {
+  animation: soundWave 2s ease-out infinite;
+  transform-origin: 34px 12px;
+}
+.step-icon-whistle .wave-1 { animation-delay: 0s; }
+.step-icon-whistle .wave-2 { animation-delay: 0.25s; }
+.step-icon-whistle .wave-3 { animation-delay: 0.5s; }
+
+@keyframes whistleBlow {
+  0%, 70%, 100% { transform: scale(1) rotate(0deg); }
+  80% { transform: scale(1.04) rotate(-2deg); }
+  90% { transform: scale(1.02) rotate(1deg); }
+}
+@keyframes soundWave {
+  0% { opacity: 0; transform: translateX(-2px); }
+  30% { opacity: 0.9; }
+  100% { opacity: 0; transform: translateX(4px); }
+}
+
+/* Step 4: swim arm rotation + flowing waves */
+.step-icon-swim .swim-arm {
+  animation: swimStroke 1.6s linear infinite;
+}
+.step-icon-swim .swim-wave {
+  animation: waveFlow 3s ease-in-out infinite;
+}
+.step-icon-swim .swim-wave-1 { animation-delay: 0s; }
+.step-icon-swim .swim-wave-2 { animation-delay: 0.4s; }
+.step-icon-swim .swim-wave-3 { animation-delay: 0.8s; }
+
+@keyframes swimStroke {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes waveFlow {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-3px); }
+}
+
+/* Connecting line draw on scroll-in */
+.process-line {
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform 1.4s ease-out 0.2s;
+}
+.process-line.is-drawn {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .step-icon-consult .dot,
+  .step-icon-visit .pin,
+  .step-icon-visit .ring,
+  .step-icon-whistle .whistle,
+  .step-icon-whistle .wave,
+  .step-icon-swim .swim-arm,
+  .step-icon-swim .swim-wave {
+    animation: none !important;
+  }
+  .process-line {
+    transform: scaleX(1);
+    transition: none;
+  }
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
