@@ -1,16 +1,18 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { staggerContainer, staggerItem } from "@/lib/animations";
 import { services } from "@/lib/data";
 
+const iconBaseClass = "service-icon h-16 w-16 md:h-20 md:w-20 overflow-visible";
+
 const icons: Record<string, React.ReactNode> = {
   management: (
-    <svg className="h-16 w-16 md:h-20 md:w-20" fill="none" viewBox="0 0 64 64" strokeWidth={1.5} stroke="currentColor">
+    <svg className={iconBaseClass} fill="none" viewBox="0 0 64 64" strokeWidth={1.5} stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">
       <rect x="12" y="8" width="40" height="48" rx="4" />
       <path d="M20 8V4" strokeWidth={2} />
       <path d="M44 8V4" strokeWidth={2} />
@@ -20,12 +22,12 @@ const icons: Record<string, React.ReactNode> = {
       <path d="M20 38H44" strokeWidth={1} opacity={0.3} />
       <path d="M20 43H38" strokeWidth={1} opacity={0.3} />
       <path d="M20 48H32" strokeWidth={1} opacity={0.3} />
-      <circle cx="42" cy="46" r="6" fill="currentColor" opacity={0.1} />
+      <circle cx="42" cy="46" r="6" stroke="currentColor" opacity={0.4} />
       <path d="M40 46L42 48L45 44" strokeWidth={1.5} />
     </svg>
   ),
   lifeguard: (
-    <svg className="h-16 w-16 md:h-20 md:w-20" fill="none" viewBox="0 0 64 64" strokeWidth={1.5} stroke="currentColor">
+    <svg className={iconBaseClass} fill="none" viewBox="0 0 64 64" strokeWidth={1.5} stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="32" cy="16" r="8" />
       <path d="M20 58C20 46 24 38 32 38C40 38 44 46 44 58" />
       <path d="M26 26L22 30" strokeWidth={2} />
@@ -35,22 +37,22 @@ const icons: Record<string, React.ReactNode> = {
     </svg>
   ),
   maintenance: (
-    <svg className="h-16 w-16 md:h-20 md:w-20" fill="none" viewBox="0 0 64 64" strokeWidth={1.5} stroke="currentColor">
+    <svg className={iconBaseClass} fill="none" viewBox="0 0 64 64" strokeWidth={1.5} stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">
       <rect x="8" y="24" width="48" height="28" rx="4" />
-      <path d="M8 36H56" strokeWidth={1} opacity={0.2} />
-      <path d="M16 36V52" strokeWidth={1} opacity={0.15} />
-      <path d="M24 36V52" strokeWidth={1} opacity={0.15} />
-      <path d="M32 36V52" strokeWidth={1} opacity={0.15} />
-      <path d="M40 36V52" strokeWidth={1} opacity={0.15} />
-      <path d="M48 36V52" strokeWidth={1} opacity={0.15} />
-      <path d="M8 44C12 42 16 42 20 44C24 46 28 46 32 44C36 42 40 42 44 44C48 46 52 46 56 44" strokeWidth={1.5} opacity={0.3} />
+      <path d="M8 36H56" strokeWidth={1} opacity={0.25} />
+      <path d="M16 36V52" strokeWidth={1} opacity={0.2} />
+      <path d="M24 36V52" strokeWidth={1} opacity={0.2} />
+      <path d="M32 36V52" strokeWidth={1} opacity={0.2} />
+      <path d="M40 36V52" strokeWidth={1} opacity={0.2} />
+      <path d="M48 36V52" strokeWidth={1} opacity={0.2} />
+      <path d="M8 44C12 42 16 42 20 44C24 46 28 46 32 44C36 42 40 42 44 44C48 46 52 46 56 44" strokeWidth={1.5} opacity={0.4} />
       <circle cx="46" cy="18" r="10" />
       <path d="M46 12V18H52" strokeWidth={2} />
       <path d="M36 14L40 16" strokeWidth={1} opacity={0.3} />
     </svg>
   ),
   events: (
-    <svg className="h-16 w-16 md:h-20 md:w-20" fill="none" viewBox="0 0 64 64" strokeWidth={1.5} stroke="currentColor">
+    <svg className={iconBaseClass} fill="none" viewBox="0 0 64 64" strokeWidth={1.5} stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">
       <rect x="10" y="12" width="44" height="36" rx="4" />
       <path d="M18 12V6" strokeWidth={2} />
       <path d="M46 12V6" strokeWidth={2} />
@@ -66,9 +68,12 @@ const icons: Record<string, React.ReactNode> = {
 
 function FlipCard({ service }: { service: (typeof services)[number] }) {
   const [flipped, setFlipped] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const inView = useInView(cardRef, { once: true, amount: 0.4 });
 
   return (
     <div
+      ref={cardRef}
       className="perspective-[1000px] cursor-pointer"
       onClick={() => setFlipped(!flipped)}
     >
@@ -78,8 +83,8 @@ function FlipCard({ service }: { service: (typeof services)[number] }) {
         }`}
       >
         {/* Front */}
-        <div className="absolute inset-0 [backface-visibility:hidden] rounded-2xl sm:rounded-3xl bg-navy shadow-sm hover:shadow-lg transition-shadow flex flex-col items-center justify-center p-4 sm:p-8">
-          <div className="text-white mb-3 sm:mb-6">
+        <div className="service-card absolute inset-0 [backface-visibility:hidden] rounded-2xl sm:rounded-3xl bg-navy shadow-sm hover:shadow-lg transition-shadow flex flex-col items-center justify-center p-4 sm:p-8">
+          <div className={`text-white mb-3 sm:mb-6 ${inView ? "is-drawn" : ""}`}>
             {icons[service.icon]}
           </div>
           <h3 className="text-sm sm:text-xl md:text-2xl font-bold text-white text-center leading-tight">
