@@ -23,6 +23,16 @@ type FormData = {
   adults: string;
 };
 
+function formatTime12Hour(time: string): string {
+  if (!time) return "";
+  const [hStr, m] = time.split(":");
+  const h = parseInt(hStr, 10);
+  if (isNaN(h)) return time;
+  const period = h >= 12 ? "PM" : "AM";
+  const hour12 = h % 12 === 0 ? 12 : h % 12;
+  return `${hour12}:${m} ${period}`;
+}
+
 const EMPTY_FORM: FormData = {
   community: "",
   firstName: "",
@@ -71,8 +81,8 @@ export default function ReservationForm() {
           "Phone": formData.phone,
           "Event Name": formData.eventName,
           "Date": formData.date,
-          "Start Time": formData.startTime,
-          "End Time": formData.endTime,
+          "Start Time": formatTime12Hour(formData.startTime),
+          "End Time": formatTime12Hour(formData.endTime),
           "Party Size": formData.partySize,
           "Kids": formData.kids,
           "Adults": formData.adults,
