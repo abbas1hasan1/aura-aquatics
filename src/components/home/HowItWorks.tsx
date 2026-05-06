@@ -33,37 +33,45 @@ const stepIcons = [
       <circle cx="18" cy="14" r="3.5" fill="currentColor" stroke="none" opacity="0.85" />
     </g>
   </svg>,
-  // Step 3: Staff & Maintain — lifeguard whistle with sound waves
-  <svg key="3" className={`${iconClass} step-icon-whistle`} fill="none" viewBox="0 0 36 36" strokeWidth={1.5} stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">
-    {/* Lanyard */}
-    <path d="M6 4 C12 8 16 12 18 16" opacity="0.5" />
-    {/* Whistle body */}
-    <g className="whistle">
-      <path d="M14 16 a8 6 0 1 0 16 0 a8 6 0 1 0 -16 0 z" />
-      <path d="M30 14 L34 12 L34 20 L30 18 z" />
-      <circle cx="20" cy="16" r="1.6" fill="currentColor" stroke="none" opacity="0.7" />
-    </g>
-    {/* Sound waves */}
-    <path className="wave wave-1" d="M34 8 Q36 10 34 12" opacity="0" />
-    <path className="wave wave-2" d="M34 8 Q38 11 34 14" opacity="0" />
-    <path className="wave wave-3" d="M34 8 Q40 12 34 16" opacity="0" />
+  // Step 3: Staff & Maintain — clipboard with three checkmarks drawing in sequence
+  <svg key="3" className={`${iconClass} step-icon-clipboard`} fill="none" viewBox="0 0 36 36" strokeWidth={1.5} stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">
+    {/* Clipboard body */}
+    <rect x="7" y="6" width="22" height="26" rx="2" />
+    {/* Clip */}
+    <rect x="13" y="3" width="10" height="5" rx="1.2" fill="currentColor" stroke="none" opacity="0.85" />
+    {/* Three rows */}
+    <line x1="11" y1="14" x2="25" y2="14" opacity="0.25" />
+    <line x1="11" y1="20" x2="25" y2="20" opacity="0.25" />
+    <line x1="11" y1="26" x2="25" y2="26" opacity="0.25" />
+    {/* Three animated checkmarks (drawn in sequence) */}
+    <path className="check check-1" d="M11.5 14 L13 15.5 L16 12.5" strokeWidth={2} />
+    <path className="check check-2" d="M11.5 20 L13 21.5 L16 18.5" strokeWidth={2} />
+    <path className="check check-3" d="M11.5 26 L13 27.5 L16 24.5" strokeWidth={2} />
   </svg>,
-  // Step 4: Swim — swimmer with rotating arm + waves
-  <svg key="4" className={`${iconClass} step-icon-swim`} fill="none" viewBox="0 0 36 36" strokeWidth={1.5} stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">
-    {/* Head */}
-    <circle cx="10" cy="11" r="2.5" />
-    {/* Body */}
-    <path d="M12 13 C18 14 22 14 28 14" />
-    {/* Stationary arm (back) */}
-    <path d="M14 13 L9 9" opacity="0.5" />
-    {/* Rotating swim arm */}
-    <g className="swim-arm" style={{ transformOrigin: "16px 13.5px" }}>
-      <path d="M16 13.5 L22 8" />
+  // Step 4: Swim — sun + water waves + rising bubbles (no human anatomy)
+  <svg key="4" className={`${iconClass} step-icon-pool`} fill="none" viewBox="0 0 36 36" strokeWidth={1.5} stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">
+    {/* Sun with rotating rays */}
+    <g className="sun">
+      <circle cx="26" cy="9" r="3" fill="currentColor" stroke="none" opacity="0.9" />
+      <g className="sun-rays" style={{ transformOrigin: "26px 9px" }}>
+        <line x1="26" y1="2" x2="26" y2="3.5" />
+        <line x1="26" y1="14.5" x2="26" y2="16" />
+        <line x1="19" y1="9" x2="20.5" y2="9" />
+        <line x1="31.5" y1="9" x2="33" y2="9" />
+        <line x1="21" y1="4" x2="22" y2="5" />
+        <line x1="30" y1="13" x2="31" y2="14" />
+        <line x1="31" y1="4" x2="30" y2="5" />
+        <line x1="22" y1="13" x2="21" y2="14" />
+      </g>
     </g>
-    {/* Water waves */}
-    <path className="swim-wave swim-wave-1" d="M2 22 Q7 20 12 22 T22 22 T32 22" />
-    <path className="swim-wave swim-wave-2" d="M2 27 Q7 25 12 27 T22 27 T32 27" opacity="0.6" />
-    <path className="swim-wave swim-wave-3" d="M2 32 Q7 30 12 32 T22 32 T32 32" opacity="0.4" />
+    {/* Rising bubbles */}
+    <circle className="bubble bubble-1" cx="9"  cy="22" r="1.2" fill="currentColor" stroke="none" opacity="0.6" />
+    <circle className="bubble bubble-2" cx="14" cy="24" r="0.9" fill="currentColor" stroke="none" opacity="0.6" />
+    <circle className="bubble bubble-3" cx="6"  cy="25" r="0.7" fill="currentColor" stroke="none" opacity="0.6" />
+    {/* Water surface */}
+    <path className="pool-wave pool-wave-1" d="M2 26 Q6 24 10 26 T18 26 T26 26 T34 26" strokeWidth={1.7} />
+    <path className="pool-wave pool-wave-2" d="M2 30 Q6 28 10 30 T18 30 T26 30 T34 30" opacity="0.7" />
+    <path className="pool-wave pool-wave-3" d="M2 34 Q6 32 10 34 T18 34 T26 34 T34 34" opacity="0.5" />
   </svg>,
 ];
 

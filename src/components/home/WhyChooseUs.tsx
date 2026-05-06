@@ -4,37 +4,83 @@ import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
 import { staggerContainer, staggerItem } from "@/lib/animations";
 
-const reasons = [
+type Credential = {
+  number: string;
+  title: string;
+  status: string;
+  icon: React.ReactNode;
+};
+
+const credentials: Credential[] = [
   {
+    number: "01",
     title: "Certified & Insured",
+    status: "Verified",
     icon: (
-      <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+      <svg className="credential-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+        {/* Shield */}
+        <path d="M16 3 L27 7 V15 C27 21.5 22.5 26.5 16 29 C9.5 26.5 5 21.5 5 15 V7 L16 3 Z" />
+        {/* Rosette ribbon tails */}
+        <path d="M11 26 L9 31 L13 29 L14 26" opacity="0.55" />
+        <path d="M21 26 L23 31 L19 29 L18 26" opacity="0.55" />
+        {/* Check (animates on hover) */}
+        <path className="shield-check" d="M11 16 L14.5 19.5 L21 12.5" strokeWidth={2.2} />
       </svg>
     ),
   },
   {
+    number: "02",
     title: "Local Houston Team",
+    status: "On-site",
     icon: (
-      <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+      <svg className="credential-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+        {/* Simplified Texas outline */}
+        <path d="M5 7 L19 7 L19 4 L23 4 L23 8 L27 9 L27 15 L24 18 L23 22 L21 24 L19 27 L17 27 L15 25 L12 25 L11 22 L8 21 L7 18 L5 16 L5 7 Z" opacity="0.85" />
+        {/* Houston pin pulse */}
+        <circle className="pin-pulse" cx="20.5" cy="17" r="2.5" stroke="currentColor" opacity="0.6" />
+        {/* Houston pin dot */}
+        <circle cx="20.5" cy="17" r="1.6" fill="currentColor" stroke="none" />
       </svg>
     ),
   },
   {
+    number: "03",
     title: "Comprehensive Solutions",
+    status: "All-in-one",
     icon: (
-      <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
+      <svg className="credential-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+        {/* Connecting lines */}
+        <line x1="9"  y1="9"  x2="23" y2="9"  opacity="0.35" />
+        <line x1="23" y1="9"  x2="23" y2="23" opacity="0.35" />
+        <line x1="23" y1="23" x2="9"  y2="23" opacity="0.35" />
+        <line x1="9"  y1="23" x2="9"  y2="9"  opacity="0.35" />
+        <line x1="9"  y1="9"  x2="23" y2="23" opacity="0.2" />
+        <line x1="23" y1="9"  x2="9"  y2="23" opacity="0.2" />
+        {/* Nodes */}
+        <circle className="node node-1" cx="9"  cy="9"  r="3" fill="currentColor" stroke="none" />
+        <circle className="node node-2" cx="23" cy="9"  r="3" fill="currentColor" stroke="none" />
+        <circle className="node node-3" cx="23" cy="23" r="3" fill="currentColor" stroke="none" />
+        <circle className="node node-4" cx="9"  cy="23" r="3" fill="currentColor" stroke="none" />
       </svg>
     ),
   },
   {
+    number: "04",
     title: "Trained & Professional",
+    status: "Certified Staff",
     icon: (
-      <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.438 60.438 0 00-.491 6.347A48.62 48.62 0 0112 20.904a48.62 48.62 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.636 50.636 0 00-2.658-.813A59.906 59.906 0 0112 3.493a59.903 59.903 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0112 13.489a50.702 50.702 0 017.74-3.342" />
+      <svg className="credential-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+        {/* Lanyard */}
+        <path d="M6 4 Q14 8 18 12" opacity="0.45" />
+        {/* Whistle body */}
+        <ellipse cx="19" cy="18" rx="9" ry="6" />
+        {/* Mouthpiece */}
+        <path d="M28 16 L31 14 L31 22 L28 20 Z" />
+        {/* Air hole */}
+        <circle cx="15" cy="18" r="1.4" fill="currentColor" stroke="none" opacity="0.6" />
+        {/* Sound puffs */}
+        <path className="whistle-puff" d="M31 11 q3 3 0 6" opacity="0" />
+        <path className="whistle-puff whistle-puff-2" d="M31 9 q5 4 0 10" opacity="0" />
       </svg>
     ),
   },
@@ -42,27 +88,25 @@ const reasons = [
 
 export default function WhyChooseUs() {
   return (
-    <section className="py-16 md:py-20 bg-ocean-500">
+    <section className="trust-strip py-14 md:py-16">
       <Container>
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          className="grid grid-cols-2 gap-8 lg:grid-cols-4 lg:gap-12"
+          viewport={{ once: true, amount: 0.2 }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
         >
-          {reasons.map((reason) => (
+          {credentials.map((c) => (
             <motion.div
-              key={reason.title}
+              key={c.number}
               variants={staggerItem}
-              className="flex flex-col items-center text-center gap-3"
+              className="credential-card"
             >
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/15 text-white backdrop-blur-sm">
-                {reason.icon}
-              </div>
-              <h3 className="text-sm font-bold uppercase tracking-wider text-white">
-                {reason.title}
-              </h3>
+              <span className="credential-status">{c.status}</span>
+              <span className="credential-number">{c.number}</span>
+              {c.icon}
+              <h3 className="credential-label">{c.title}</h3>
             </motion.div>
           ))}
         </motion.div>

@@ -177,48 +177,52 @@ body {
   100% { transform: scale(2.2); opacity: 0; }
 }
 
-/* Step 3: whistle blow + sound waves */
-.step-icon-whistle .whistle {
-  animation: whistleBlow 2s ease-in-out infinite;
-  transform-origin: 22px 16px;
+/* Step 3: clipboard with sequenced check-mark draws */
+.step-icon-clipboard .check {
+  stroke-dasharray: 12;
+  stroke-dashoffset: 12;
+  animation: clipboardCheck 4s ease-out infinite;
 }
-.step-icon-whistle .wave {
-  animation: soundWave 2s ease-out infinite;
-  transform-origin: 34px 12px;
-}
-.step-icon-whistle .wave-1 { animation-delay: 0s; }
-.step-icon-whistle .wave-2 { animation-delay: 0.25s; }
-.step-icon-whistle .wave-3 { animation-delay: 0.5s; }
+.step-icon-clipboard .check-1 { animation-delay: 0s; }
+.step-icon-clipboard .check-2 { animation-delay: 0.5s; }
+.step-icon-clipboard .check-3 { animation-delay: 1s; }
 
-@keyframes whistleBlow {
-  0%, 70%, 100% { transform: scale(1) rotate(0deg); }
-  80% { transform: scale(1.04) rotate(-2deg); }
-  90% { transform: scale(1.02) rotate(1deg); }
-}
-@keyframes soundWave {
-  0% { opacity: 0; transform: translateX(-2px); }
-  30% { opacity: 0.9; }
-  100% { opacity: 0; transform: translateX(4px); }
+@keyframes clipboardCheck {
+  0% { stroke-dashoffset: 12; }
+  20%, 80% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: 12; }
 }
 
-/* Step 4: swim arm rotation + flowing waves */
-.step-icon-swim .swim-arm {
-  animation: swimStroke 1.6s linear infinite;
+/* Step 4: sun rays rotating + bubbles rising + waves flowing */
+.step-icon-pool .sun-rays {
+  animation: sunSpin 14s linear infinite;
 }
-.step-icon-swim .swim-wave {
-  animation: waveFlow 3s ease-in-out infinite;
+.step-icon-pool .bubble {
+  animation: bubbleRise 3.2s ease-in infinite;
 }
-.step-icon-swim .swim-wave-1 { animation-delay: 0s; }
-.step-icon-swim .swim-wave-2 { animation-delay: 0.4s; }
-.step-icon-swim .swim-wave-3 { animation-delay: 0.8s; }
+.step-icon-pool .bubble-1 { animation-delay: 0s; }
+.step-icon-pool .bubble-2 { animation-delay: 1.1s; }
+.step-icon-pool .bubble-3 { animation-delay: 2.2s; }
+.step-icon-pool .pool-wave {
+  animation: poolWave 3s ease-in-out infinite;
+  transform-origin: center;
+}
+.step-icon-pool .pool-wave-1 { animation-delay: 0s; }
+.step-icon-pool .pool-wave-2 { animation-delay: 0.3s; }
+.step-icon-pool .pool-wave-3 { animation-delay: 0.6s; }
 
-@keyframes swimStroke {
+@keyframes sunSpin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
-@keyframes waveFlow {
+@keyframes bubbleRise {
+  0% { transform: translateY(4px); opacity: 0; }
+  20% { opacity: 0.7; }
+  100% { transform: translateY(-10px); opacity: 0; }
+}
+@keyframes poolWave {
   0%, 100% { transform: translateX(0); }
-  50% { transform: translateX(-3px); }
+  50% { transform: translateX(-2px); }
 }
 
 /* Connecting line draw on scroll-in */
@@ -235,15 +239,188 @@ body {
   .step-icon-consult .dot,
   .step-icon-visit .pin,
   .step-icon-visit .ring,
-  .step-icon-whistle .whistle,
-  .step-icon-whistle .wave,
-  .step-icon-swim .swim-arm,
-  .step-icon-swim .swim-wave {
+  .step-icon-clipboard .check,
+  .step-icon-pool .sun-rays,
+  .step-icon-pool .bubble,
+  .step-icon-pool .pool-wave {
     animation: none !important;
+  }
+  .step-icon-clipboard .check {
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
   }
   .process-line {
     transform: scaleX(1);
     transition: none;
+  }
+}
+
+/* ===== Trust strip — credentials roster ===== */
+
+.trust-strip {
+  background: linear-gradient(180deg, #1653aa 0%, #124898 100%);
+  position: relative;
+  overflow: hidden;
+}
+.trust-strip::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.08) 1px, transparent 0);
+  background-size: 28px 28px;
+  pointer-events: none;
+  mask-image: linear-gradient(180deg, transparent 0%, black 30%, black 70%, transparent 100%);
+}
+
+.credential-card {
+  position: relative;
+  padding: 1.75rem 1.25rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  gap: 0.5rem 1rem;
+  align-items: start;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.credential-card:hover {
+  transform: translateY(-4px);
+}
+
+@media (min-width: 1024px) {
+  .credential-card + .credential-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 1.25rem;
+    bottom: 1.25rem;
+    width: 1px;
+    background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.18) 50%, transparent 100%);
+  }
+}
+
+.credential-number {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  font-size: 3.5rem;
+  line-height: 0.85;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.35);
+  font-variant-numeric: tabular-nums;
+  transition: -webkit-text-stroke-color 0.4s ease, color 0.4s ease;
+}
+.credential-card:hover .credential-number {
+  color: rgba(255, 255, 255, 0.95);
+  -webkit-text-stroke-color: rgba(255, 255, 255, 0.95);
+}
+
+.credential-icon {
+  grid-column: 2;
+  grid-row: 1;
+  width: 2rem;
+  height: 2rem;
+  color: rgba(255, 255, 255, 0.92);
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.credential-card:hover .credential-icon {
+  transform: scale(1.08);
+}
+
+.credential-label {
+  grid-column: 2;
+  grid-row: 2;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.92);
+  line-height: 1.3;
+}
+
+.credential-status {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  transition: color 0.3s ease;
+}
+.credential-status::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: #4ade80;
+  box-shadow: 0 0 8px rgba(74, 222, 128, 0.6);
+  animation: statusBlink 2s ease-in-out infinite;
+}
+.credential-card:hover .credential-status {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+@keyframes statusBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* Credential icon animations */
+.credential-icon .shield-check {
+  stroke-dasharray: 10;
+  stroke-dashoffset: 10;
+}
+.credential-card:hover .credential-icon .shield-check {
+  animation: drawCheck 0.6s ease-out forwards;
+}
+@keyframes drawCheck {
+  to { stroke-dashoffset: 0; }
+}
+
+.credential-icon .pin-pulse {
+  transform-origin: center;
+  animation: pinDot 2s ease-out infinite;
+}
+@keyframes pinDot {
+  0% { transform: scale(0.8); opacity: 0.9; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+.credential-icon .node {
+  animation: nodeBlink 2.4s ease-in-out infinite;
+}
+.credential-icon .node-1 { animation-delay: 0s; }
+.credential-icon .node-2 { animation-delay: 0.3s; }
+.credential-icon .node-3 { animation-delay: 0.6s; }
+.credential-icon .node-4 { animation-delay: 0.9s; }
+@keyframes nodeBlink {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 1; }
+}
+
+.credential-icon .whistle-puff {
+  transform-origin: 19px 11px;
+  animation: whistlePuff 2.5s ease-out infinite;
+  opacity: 0;
+}
+.credential-icon .whistle-puff-2 { animation-delay: 0.3s; }
+@keyframes whistlePuff {
+  0% { opacity: 0; transform: translateX(0) scale(0.6); }
+  30% { opacity: 0.8; }
+  100% { opacity: 0; transform: translateX(4px) scale(1.4); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .credential-status::before,
+  .credential-icon .pin-pulse,
+  .credential-icon .node,
+  .credential-icon .whistle-puff {
+    animation: none !important;
   }
 }
 
