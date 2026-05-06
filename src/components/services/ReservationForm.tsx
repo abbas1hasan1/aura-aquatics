@@ -63,32 +63,50 @@ export default function ReservationForm() {
     e.preventDefault();
     setSubmitting(true);
     setError(null);
-    try {
-      const res = await fetch("https://formsubmit.co/ajax/Info@auraaquatics.com", {
+
+    const emailRequest = fetch("https://formsubmit.co/ajax/Info@auraaquatics.com", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        _subject: `New reservation request — ${formData.eventName || "Event"} (${formData.community || "Community"})`,
+        _replyto: formData.email,
+        _template: "table",
+        "Community": formData.community,
+        "First Name": formData.firstName,
+        "Last Name": formData.lastName,
+        "Email": formData.email,
+        "Phone": formData.phone,
+        "Event Name": formData.eventName,
+        "Date": formData.date,
+        "Start Time": formatTime12Hour(formData.startTime),
+        "End Time": formatTime12Hour(formData.endTime),
+        "Party Size": formData.partySize,
+        "Kids": formData.kids,
+        "Adults": formData.adults,
+      }),
+    });
+
+    const sheetRequest = fetch(
+      "https://script.google.com/a/macros/auraaquatics.com/s/AKfycbxUGxhjWVaRDC5Wuon0FQ2U2MSRgF4b8WgiDx1H9Vw02CXZwkqGK1dEl_ju8GGwsfs/exec",
+      {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify({
-          _subject: `New reservation request — ${formData.eventName || "Event"} (${formData.community || "Community"})`,
-          _replyto: formData.email,
-          _template: "table",
-          "Community": formData.community,
-          "First Name": formData.firstName,
-          "Last Name": formData.lastName,
-          "Email": formData.email,
-          "Phone": formData.phone,
-          "Event Name": formData.eventName,
-          "Date": formData.date,
-          "Start Time": formatTime12Hour(formData.startTime),
-          "End Time": formatTime12Hour(formData.endTime),
-          "Party Size": formData.partySize,
-          "Kids": formData.kids,
-          "Adults": formData.adults,
+          ...formData,
+          startTime: formatTime12Hour(formData.startTime),
+          endTime: formatTime12Hour(formData.endTime),
         }),
-      });
-      if (!res.ok) throw new Error("Request failed");
+      },
+    );
+
+    try {
+      const [emailRes, sheetRes] = await Promise.allSettled([emailRequest, sheetRequest]);
+      const emailOk = emailRes.status === "fulfilled" && emailRes.value.ok;
+      const sheetOk = sheetRes.status === "fulfilled" && sheetRes.value.ok;
+      if (!emailOk && !sheetOk) throw new Error("Both endpoints failed");
       setSubmitted(true);
     } catch {
       setError("Something went wrong. Please try again or call us.");
